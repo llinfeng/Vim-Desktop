@@ -226,8 +226,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'vim-scripts/listmaps.vim'
 Plugin 'vim-scripts/matlab_run.vim'
 Plugin 'vim-scripts/grep.vim'
-Plugin 'jcf/vim-latex'
 
+"Plugin 'jcf/vim-latex'
 "Plugin 'jeffkreeftmeijer/vim-numbertoggle' " use set relativenumber!
 
 "Plugin 'tpope/vim-surround' " It is not well performing. I just added it in directly. 
