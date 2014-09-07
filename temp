@@ -1,0 +1,32 @@
+let wiki_1 = {}
+let wiki_1.index = 'Academia'
+let wiki_1.path = 'C:/Users/MyUserName/Dropbox/Wiki/Warehouse'
+let wiki_1.path_html = 'C:/Users/MyUserName/Dropbox/Wiki/html'
+let wiki_1.html_header = 'C:/Users/MyUserName/Dropbox/Wiki/html'
+let wiki_1.template_path = 'C:/Users/MyUserName/Dropbox/Shu/HTML/Template-Defualt'
+let wiki_1.template_default = 'default'
+let wiki_1.template_ext = '.html'
+let wiki_1.auto_export = 1
+
+let wiki_2 = {}
+let wiki_2.index = 'Life'
+let wiki_2.path = 'C:/Users/MyUserName/Dropbox/Wiki/Warehouse'
+let wiki_2.diary_rel_path = ''
+let wiki_2.diary_index = 'Journal'
+let wiki_2.path_html = 'C:/Users/MyUserName/Dropbox/Wiki/html'
+let wiki_2.html_header = 'C:/Users/MyUserName/Dropbox/Wiki/html'
+let wiki_2.template_path = 'C:/Users/MyUserName/Dropbox/Shu/HTML/Template-Defualt'
+let wiki_2.template_default = 'default'
+let wiki_2.template_ext = '.html'
+let wiki_2.auto_export = 1
+
+let wiki_3 = {}
+let wiki_3.index = 'Work'
+let wiki_3.path = 'C:/Users/MyUserName/Dropbox/Wiki/Warehouse'
+let wiki_3.path_html = 'C:/Users/MyUserName/Dropbox/Wiki/html'
+let wiki_3.html_header = 'C:/Users/MyUserName/Dropbox/Wiki/html'
+let wiki_3.template_path = 'C:/Users/MyUserName/Dropbox/Shu/HTML/Template-Defualt'
+let wiki_3.template_default = 'default'
+let wiki_3.template_ext = '.html'
+let wiki_3.auto_export = 1
+

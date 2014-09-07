@@ -233,7 +233,7 @@ Plugin 'vim-scripts/grep.vim'
 "Plugin 'tpope/vim-surround' " It is not well performing. I just added it in directly. 
 
 
-"Plugin 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 
 " Something I don't find useful.
 "Plugin 'llinfeng/yankring'
@@ -420,7 +420,6 @@ let wiki_1 = {}
 let wiki_1.index = 'Academia'
 let wiki_1.path = 'C:/Users/llinfeng/Dropbox/Wiki/Warehouse'
 let wiki_1.diary_rel_path = ''
-"let wiki_1.diary_rel_path = 'C:/gUsers/llinfeng/Dropbox/Dropbox/Wiki/Warehouse'
 let wiki_1.diary_index = 'Journal'
 let wiki_1.path_html = 'C:/Users/llinfeng/Dropbox/Wiki/html'
 let wiki_1.html_header = 'C:/Users/llinfeng/Dropbox/Wiki/html'
@@ -534,6 +533,8 @@ nnoremap Y y$
 "autocmd Filetype wiki 
 autocmd FileType vimwiki nnoremap <F10> I* [ ] <ESC>
 autocmd FileType vimwiki inoremap <F10> <ESC>I* [ ] 
+" Hopefully 
+autocmd FileType vimwiki nnoremap <C-D> :VimwikiToggleListItem<CR>
 
 
 " }}}
