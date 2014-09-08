@@ -486,6 +486,7 @@ vmap <A-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " Mapping for key-combination  {{{
 nnoremap <C-s> :wall!<CR>
 inoremap <C-s> <ESC>:wall!<CR><right>
+inoremap <C-BS> <C-W>
 
 " nnoremap <C-space> :DWM_Focus<CR>
 " Forget about this: now use <C-@>
