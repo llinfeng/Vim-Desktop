@@ -92,6 +92,7 @@ Tex_ViewRule_format	latex-suite.txt	/*Tex_ViewRule_format*
 Tex_ViewerCwindowHeight	latex-suite.txt	/*Tex_ViewerCwindowHeight*
 Tex_ViewerPreviewHeight	latex-suite.txt	/*Tex_ViewerPreviewHeight*
 Tshortcuts	latex-suite.txt	/*Tshortcuts*
+Win+R	outlook.txt	/*Win+R*
 \Alph	latexhelp.txt	/*\\Alph*
 \Huge	latexhelp.txt	/*\\Huge*
 \LARGE	latexhelp.txt	/*\\LARGE*
@@ -882,6 +883,16 @@ oneside	latexhelp.txt	/*oneside*
 openany	latexhelp.txt	/*openany*
 openbib	latexhelp.txt	/*openbib*
 openright	latexhelp.txt	/*openright*
+outlook	outlook.txt	/*outlook*
+outlook-Unicode	outlook.txt	/*outlook-Unicode*
+outlook-configuration	outlook.txt	/*outlook-configuration*
+outlook-install	outlook.txt	/*outlook-install*
+outlook-macro	outlook.txt	/*outlook-macro*
+outlook-new	outlook.txt	/*outlook-new*
+outlook-overview	outlook.txt	/*outlook-overview*
+outlook-troubleshooting	outlook.txt	/*outlook-troubleshooting*
+outlook.txt	outlook.txt	/*outlook.txt*
+outlookvim	outlook.txt	/*outlookvim*
 overriding-macros	latex-suite.txt	/*overriding-macros*
 package-actions	latex-suite.txt	/*package-actions*
 paragraph-mode	latexhelp.txt	/*paragraph-mode*

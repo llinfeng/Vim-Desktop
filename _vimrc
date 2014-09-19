@@ -535,7 +535,7 @@ nnoremap Y y$
 autocmd FileType vimwiki nnoremap <F10> I* [ ] <ESC>
 autocmd FileType vimwiki inoremap <F10> <ESC>I* [ ] 
 " Hopefully 
-autocmd FileType vimwiki nnoremap <C-D> :VimwikiToggleListItem<CR>
+autocmd FileType vimwiki nnoremap <C-D> :VimwikiToggleListItem<CR>j
 
 
 " }}}
@@ -570,7 +570,6 @@ noremap <leader>cd :cd %:p:h<cr>
 
 " Fast saving
 nnoremap <leader>s :w!<cr>
-inoremap <C-CR> <ESC>[sz=<cr>
 " Disable highlight when <leader><cr> is pressed
 
 call togglebg#map("<leader>c")
@@ -693,7 +692,6 @@ autocmd FileType stata vnoremap <F12> :<C-U>call RunDoLines() <CR>
 " }}} 
 " }}}
 
-
 " AutoCommand {{{
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "autocmd  BufRead,BufWritePre *.do normal gg=G
@@ -727,3 +725,51 @@ autocmd FileType python nnoremap <f5> :w<cr>:!python %<cr>
 noremap <C-R> :redo<CR>
 "colorscheme solarized 
 "set background=dark
+
+nnoremap <space> <C-F>
+
+function! ToggleSlash(independent) range
+  let from = ''
+  for lnum in range(a:firstline, a:lastline)
+    let line = getline(lnum)
+    let first = matchstr(line, '[/\\]')
+    if !empty(first)
+      if a:independent || empty(from)
+        let from = first
+      endif
+      let opposite = (from == '/' ? '\' : '/')
+      call setline(lnum, substitute(line, from, opposite, 'g'))
+    endif
+  endfor
+endfunction
+command! -bang -range ToggleSlash <line1>,<line2>call ToggleSlash(<bang>1)
+noremap <silent> <F8> :ToggleSlash<CR>
+
+" Behave Win: 
+vnoremap <BS> d
+
+
+"Diff-ing two consecutive lines
+"That is not a feature, however it is easily scripted, e.g. in your vimrc:
+function! DiffLineWithNext()
+    let f1=tempname()
+    let f2=tempname()
+
+    .write &f1
+    .+1write &f2
+
+    tabedit &f1
+    vert diffsplit &f2
+endfunction
+
+"This will open the current and next lines in vertical split in another tab. Note that this code is a sample
+"
+"    it doesn't check whether next line exists (there are any following lines)
+"    it doesn't cleanup the tempfiles created
+"    a nice improvement would be to take a range, or use the '' mark to select the other line
+"
+"You can leave off the 'vert' in order to have a horizontal split
+"
+"Map it to something fancy so you don't have to :call it manually:
+nnoremap <F17> :call DiffLineWithNext()^M
+
