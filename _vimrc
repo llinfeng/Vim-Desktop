@@ -226,6 +226,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'vim-scripts/listmaps.vim'
 Plugin 'vim-scripts/matlab_run.vim'
 Plugin 'vim-scripts/grep.vim'
+Plugin 'vimoutliner/vimoutliner'
+
 
 "Plugin 'jcf/vim-latex'
 "Plugin 'jeffkreeftmeijer/vim-numbertoggle' " use set relativenumber!
@@ -332,6 +334,27 @@ function! MyDiff()
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 let g:tex_flavor='latex'
+let g:Tex_GotoError=0 " Will keep the cursor as is.
+"let g:Tex_IgnoredWarnings =
+"        \'Underfull'."\n".
+"        \'Overfull'."\n".
+"        \'specifier changed to'."\n".
+"        \'You have requested'."\n".
+"        \'Missing number, treated as zero.'."\n".
+"        \'There were undefined references'."\n".
+"        \'Citation %.%# undefined'."\n".
+"        \'Font Warning'
+let g:tex_IgnoredWarnings = 
+    \'Underfull'."\n".
+    \'Overfull'."\n".
+    \'specifier changed to'."\n".
+    \'You have requested'."\n".
+    \'Missing number, treated as zero.'."\n".
+    \'There were undefined references'."\n".
+    \'Citation %.%# undefined'."\n".
+    \'Double space found.'."\n"
+let g:Tex_IgnoreLevel = 8
+
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
 let g:Tex_ViewRule_pdf = 'C:\Program Files (x86)\SumatraPDF\SumatraPDF.exe -reuse-instance -inverse-search "C:\vim\vim74\gvim  -c \":RemoteOpen +\%l \%f\"" '
@@ -544,6 +567,10 @@ autocmd FileType vimwiki nnoremap <C-D> :VimwikiToggleListItem<CR>j
 " Treat long lines as break lines (useful when moving around in them)
 noremap j gj
 noremap k gk
+noremap <home> g0
+noremap <end> g$
+noremap 0 g0
+noremap $ g$
 inoremap <silent> <Down> <C-o>gj
 inoremap <silent> <Up> <C-o>gk
 
