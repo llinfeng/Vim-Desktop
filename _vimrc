@@ -334,6 +334,7 @@ function! MyDiff()
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 let g:tex_flavor='latex'
+
 let g:Tex_GotoError=0 " Will keep the cursor as is.
 "let g:Tex_IgnoredWarnings =
 "        \'Underfull'."\n".
@@ -352,8 +353,9 @@ let g:tex_IgnoredWarnings =
     \'Missing number, treated as zero.'."\n".
     \'There were undefined references'."\n".
     \'Citation %.%# undefined'."\n".
-    \'Double space found.'."\n"
-let g:Tex_IgnoreLevel = 8
+    \'Double space found.'."\n".
+    \'Latex Warning'."\n"
+let g:Tex_IgnoreLevel = 9
 
 let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_CompileRule_pdf = 'pdflatex --synctex=-1 -src-specials -interaction=nonstopmode $*'
@@ -547,7 +549,7 @@ nnoremap  aa <ESC>[sz=
 nnoremap <insert> :LanguageToolCheck<CR>
 nnoremap <S-insert> :LanguageToolClear<CR>
 inoremap <silent> <insert> <ESC>:YRShow<CR>
-noremap <F2> :NERDTreeToggle<CR>B
+noremap <F2> :NERDTreeToggle L:\users\llinfeng\NODA\Linfeng<CR>
 noremap <silent> <F3> :noh<cr>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <S-CR> [sz=<CR>
@@ -573,6 +575,8 @@ noremap 0 g0
 noremap $ g$
 inoremap <silent> <Down> <C-o>gj
 inoremap <silent> <Up> <C-o>gk
+inoremap <home> <C-o>g0
+inoremap <end> <C-o>g$
 
 " }}}
 " Mapping for Windows {{{
@@ -607,6 +611,7 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>N :set relativenumber!<CR>
 nnoremap <Leader>p :bp<CR>
 nnoremap <Leader>b :bp<CR>
+nnoremap <leader>u :e C:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
 
 nnoremap <Leader>e :vsp $MYVIMRC<CR>
 noremap <leader>f <ESC>:Fullscreen<CR>
