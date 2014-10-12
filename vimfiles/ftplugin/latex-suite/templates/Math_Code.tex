@@ -1,0 +1,122 @@
+<+	+>	!comp!	!exe!
+\documentclass[11pt]{article}
+\usepackage[margin=1.2in]{geometry} %Or alternatively, one can specify the following: 
+%\usepackage[left=1.2in,right=1.2in,top=1in,bottom=1.1in]{geometry}
+%%%%%%%%%%%%%%%%
+\newcommand{\Subject}{<+Course Name+>}
+\newcommand{\HWNum}{<+Memo Number+>}
+\newcommand{\StudentName}{Linfeng Li}
+\usepackage{amssymb,amsmath,amsthm,mathrsfs,verbatim}
+\usepackage{color}\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+\usepackage{graphicx}%% This gives the book mark!
+\usepackage{pdfpages} %merge pdf with: \includepdfmerge{heine-borel_proof.pdf,-}
+\usepackage{graphicx,graphics}
+%\usepackage{graphicx}%to input images \includegraphics[width=130mm]{Open_Open}
+
+
+
+%Create a header at the top of every page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{Written by: \StudentName}	%Pu t the name on the Left
+\fancyhead[C]{\Subject}	%Put the Course name on the Center
+\fancyhead[R]{Memo \# \HWNum}	%Put the Assignment Number on the Right
+%Homework \# \HWNum
+%You can define commands for the things you use frequently.
+
+\newcommand{\A}{{\mathcal A}}
+\newcommand{\B}{{\mathcal B}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\C}{{\mathcal C}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\T}{{\mathcal T}}
+\newcommand{\s}{{\mathcal S}}
+\newcommand{\p}{\mathfrak p}
+\renewcommand{\P}{\mathcal P}
+\newcommand{\2}{\textbf{2}}
+\newcommand{\1}{\textbf{1}}
+\newcommand{\II}{\ensuremath{\textbf{\infty}}}
+\newcommand{\half}{\ensuremath{\frac{1}{2}}}
+\renewcommand{\phi}{\varphi}
+\newcommand{\WLOG}{With out loss of generality}
+\newcommand{\card}{\text{card }}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\To}{\;\Rightarrow\;}
+\newcommand{\LL}{L\"utkepohl }
+\newcommand{\code}{lstlisting}
+
+
+
+
+%% Block for tricky stuffs.
+\usepackage[colorlinks,linkcolor=blue,=true]{hyperref}
+\usepackage{marginnote}
+\usepackage{mdframed}%need  for box like theorems.\newmdtheoremenv
+\newmdtheoremenv{theorem}{Theorem}[subsection]
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{Ccomment}{Comment}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+
+\newmdtheoremenv {corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newmdtheoremenv{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newmdtheoremenv{example_box}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newmdtheoremenv{fact}[theorem]{Fact}
+\newmdtheoremenv{idea}{Idea}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newmdtheoremenv{formal_proof}[theorem]{Proof} %Don't want this be indexed!
+\newmdtheoremenv{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newmdtheoremenv{Upshot}[theorem]{Upshot}
+\usepackage{multicol}
+\usepackage{enumerate}
+%\usepackage{subfig}
+
+
+
+\usepackage{float}
+
+\usepackage{lipsum} %For mini page.
+% Sample Usage for mini page. Output is not testified.
+%\fbox{
+%\begin{minipage}{0.9\textwidth}
+%
+%\end{minipage}
+%} 
+
+\usepackage{setspace}
+%\singlespacing
+\onehalfspacing
+%\doublespacing
+
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode} % For displaying matlab code in latex.
+% Three ways to use the mcode option.
+%\lstinputlisting{Homework8/filename.m}
+%
+%\begin{lstlisting}
+%  The MatLab function/scripts/whatever_you_like_to_put_into_matlab_display_mode
+%\end{lstlisting}
+%
+%\lstinputlisting[firstline=18, lastline=21]{HW2_STEM.m}
+
+
+\begin{document}
+<++>
+\end{document}
+
+

@@ -776,7 +776,7 @@ function! ToggleSlash(independent) range
   endfor
 endfunction
 command! -bang -range ToggleSlash <line1>,<line2>call ToggleSlash(<bang>1)
-"noremap <silent> <F8> :ToggleSlash<CR>
+noremap <silent> <F8> :ToggleSlash<CR>
 
 " Behave Win: 
 vnoremap <BS> d
@@ -809,22 +809,5 @@ nnoremap <F17> :call DiffLineWithNext()^M
 " Defining commandline functions.
 command! O only
 
-
 " the following command defines the SaveIt command, which writes out the specified range to the file "save_file": 
 command! -range=% SaveIt :<line1>,<line2>write! save_file
-" Comment: this is not so ideal. At lease I would like to save it to a directory
-" of my choice.
-
-" Undo bdelete
-autocmd BufDelete * let g:latest_deleted_buffer = expand("<afile>:p")
-
-nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
-nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
-
-" Copy the full file path to windows clipboard.
-nnoremap <leader><leader><leader> :let @* = expand("%:p")<CR>
-
-" Copy the file name to windows clipboard.
-nnoremap Y :let @* = expand("%")<CR>
-
-
