@@ -230,6 +230,7 @@ Plugin 'vim-scripts/grep.vim'
 Plugin 'vimoutliner/vimoutliner'
 
 
+
 "Plugin 'jcf/vim-latex'
 "Plugin 'jeffkreeftmeijer/vim-numbertoggle' " use set relativenumber!
 
@@ -694,6 +695,18 @@ autocmd FileType stata noremap <F12> V:<C-U>call RunDoLines() <CR>
 autocmd FileType stata inoremap <F12> <ESC>V:<C-U>call RunDoLines() <CR>
 autocmd FileType stata vnoremap <F12> :<C-U>call RunDoLines() <CR>
 
+" To run commands from commented texts! 
+"#IfWinActive ahk_class Vim
+"+F12:: 
+"  send {ESC}
+"  send v$
+"  send {F12}
+"return
+"  (Implemented in AHK. Did not find a Vim solution.)
+
+
+
+
 
 " A working version for Mac users (hopefully those using *nix)
 " Source: http://stackoverflow.com/questions/4226145/sending-code-from-vim-to-stata
@@ -825,6 +838,14 @@ nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
 nnoremap <leader><leader><leader> :let @* = expand("%:p")<CR>
 
 " Copy the file name to windows clipboard.
-nnoremap Y :let @* = expand("%")<CR>
+nnoremap Y :let @* = expand("%:p:h")<CR>
 
+" complete list of the choices: 
+    " Path(absolute) to the file: "%:p" 
+    " Path to the directory of the file: "%:p:h"
+    " File name only: "%:t"
+    " Relative path: "%"
 
+nnoremap DDD :call delete(expand('%')) | bdelete!
+command! U :e c:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
+command! C :center
