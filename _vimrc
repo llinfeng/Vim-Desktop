@@ -846,6 +846,6 @@ nnoremap Y :let @* = expand("%:p:h")<CR>
     " File name only: "%:t"
     " Relative path: "%"
 
-nnoremap DDD :call delete(expand('%')) | bdelete!
+nnoremap DDD :call delete(expand('%')) 
 command! U :e c:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
 command! C :center
