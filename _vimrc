@@ -1,3 +1,5 @@
+"colorscheme solarized 
+"set background=dark
 set fdm=marker
 let mapleader = ","
 let g:mapleader = ","
@@ -127,6 +129,7 @@ set formatoptions+=l2nmt
 " For formatting the texts.
 set textwidth=80
 set wrapmargin=0
+set number
 set relativenumber
 
 
@@ -227,14 +230,14 @@ Plugin 'honza/vim-snippets'
 Plugin 'vim-scripts/listmaps.vim'
 Plugin 'vim-scripts/matlab_run.vim'
 Plugin 'vim-scripts/grep.vim'
-Plugin 'vimoutliner/vimoutliner'
+Plugin 'llinfeng/vim-latex-suite'
 
-
+"Plugin 'vimoutliner/vimoutliner'
 
 "Plugin 'jcf/vim-latex'
 "Plugin 'jeffkreeftmeijer/vim-numbertoggle' " use set relativenumber!
 
-"Plugin 'tpope/vim-surround' " It is not well performing. I just added it in directly. 
+Plugin 'tpope/vim-surround' " It is not well performing. I just added it in directly. 
 
 
 Plugin 'bling/vim-airline'
@@ -486,6 +489,7 @@ let g:shell_fullscreen_always_on_top = 0
 let g:shell_fullscreen_items="mT"
 " }}}
 " }}}
+
 " Mapings {{{
 " Mapping for functionality: tab and line-toggle {{{
 
@@ -551,7 +555,7 @@ nnoremap  aa <ESC>[sz=
 nnoremap <insert> :LanguageToolCheck<CR>
 nnoremap <S-insert> :LanguageToolClear<CR>
 inoremap <silent> <insert> <ESC>:YRShow<CR>
-noremap <F2> :NERDTreeToggle L:\users\llinfeng\NODA\Linfeng<CR>
+noremap <F2> :NERDTreeToggle<CR> 
 noremap <silent> <F3> :noh<cr>
 nnoremap <F4> :GundoToggle<CR>
 nnoremap <S-CR> [sz=<CR>
@@ -579,6 +583,7 @@ inoremap <silent> <Down> <C-o>gj
 inoremap <silent> <Up> <C-o>gk
 inoremap <home> <C-o>g0
 inoremap <end> <C-o>g$
+"autocmd FileType stata nunmap j k <end> <home> 
 
 " }}}
 " Mapping for Windows {{{
@@ -615,8 +620,8 @@ nnoremap <Leader>p :bp<CR>
 nnoremap <Leader>b :bp<CR>
 nnoremap <leader>u :e C:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
 
-nnoremap <Leader>e :vsp $MYVIMRC<CR>
-noremap <leader>f <ESC>:Fullscreen<CR>
+nnoremap <Leader>e :e $MYVIMRC<CR> :O<CR>
+noremap <leader>f <ESC>:Fullscreen<CR>:Fullscreen<CR>:Fullscreen<CR>
 nnoremap <leader>i :PluginInstall<CR>
 nnoremap <Leader>l :ls<CR>
 " <F12> is used for toggling the menu bar.
@@ -769,8 +774,6 @@ autocmd FileType python nnoremap <f5> :w<cr>:!python %<cr>
 
 
 noremap <C-R> :redo<CR>
-"colorscheme solarized 
-"set background=dark
 
 nnoremap <space> <C-F>
 
@@ -821,10 +824,11 @@ nnoremap <F17> :call DiffLineWithNext()^M
 
 " Defining commandline functions.
 command! O only
-
+command! C :center
+command! U :e c:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
 
 " the following command defines the SaveIt command, which writes out the specified range to the file "save_file": 
-command! -range=% SaveIt :<line1>,<line2>write! save_file
+"command! -range=% SaveIt :<line1>,<line2>write! save_file
 " Comment: this is not so ideal. At lease I would like to save it to a directory
 " of my choice.
 
@@ -835,7 +839,9 @@ nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
 nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
 
 " Copy the full file path to windows clipboard.
-nnoremap <leader><leader><leader> :let @* = expand("%:p")<CR>
+nnoremap <leader><leader>f :let @* = expand("%:p")<CR>
+nnoremap <leader><leader>n :let @* = expand("%:t")<CR>
+nnoremap <leader><leader>p :let @* = expand("%:p:h")<CR>
 
 " Copy the file name to windows clipboard.
 nnoremap Y :let @* = expand("%:p:h")<CR>
@@ -847,5 +853,3 @@ nnoremap Y :let @* = expand("%:p:h")<CR>
     " Relative path: "%"
 
 nnoremap DDD :call delete(expand('%')) 
-command! U :e c:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
-command! C :center
