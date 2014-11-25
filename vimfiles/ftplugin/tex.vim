@@ -6,16 +6,10 @@ set sw=2
 " all the figure labels. Very useful!
 set iskeyword+=:
 set iskeyword+=-
+set iskeyword+=_
 
-map <C-s> :wall!<CR>,ll
-imap <C-s> <ESC>:wall!<CR>
-imap <tab> <Plug>IMAP_JumpForward
-imap <S-CR> <ESC>[sz=
-imap <tab> <space><space><space><space>
-imap <S-tab> <backspace><backspace><backspace><backspace>
-
-" imap <S-CR> <ESC>[sz=<cr>
-
+map <buffer> <C-s> :wall!<CR>,ll
+imap <buffer> <C-s> <ESC>:wall!<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -29,3 +23,22 @@ let g:Tex_Env_stlog="\\begin{stlog}\<CR>\\input{../../../tex/sj_files/<++>}\<CR>
 let g:Tex_Env_multi="\\begin{figure}[!htb]\<CR>\\centering\<CR>\\begin{subfigure}[b]{0.4\\textwidth}\<CR>\\includegraphics[width=\\textwidth]{../../../tex/<++>.eps}\<CR>\\caption{<++>}\<CR>\\end{subfigure}\<CR>~\<CR>\\begin{subfigure}[b]{0.4\\textwidth}\<CR>\\includegraphics[width=\\textwidth]{../../../tex/<++>.eps}\<CR>\\caption{<++>}\<CR>\\end{subfigure}\<CR>\\caption{<+Caption for the two pics+>}\<CR>\\label{<+label+>}\<CR>\\end{figure}"
 
 let g:Tex_Env_regression="\\paragraph{<+Command for regression+>} $ $ \\newline\<CR>\\begin{adjustbox}{width=\\textwidth,totalheight=\\textheight,keepaspectratio}\<CR>\\input{../../../tex/<++>.tex}\<CR>\\end{adjustbox}\<CR>"
+let g:Tex_Env_reg="\\paragraph{<+Command for regression+>} $ $ \\newline\<CR>\\begin{adjustbox}{width=\\textwidth,totalheight=\\textheight,keepaspectratio}\<CR>\\input{../../../tex/<++>.tex}\<CR>\\end{adjustbox}\<CR>"
+
+let g:Tex_Env_mfile="\<CR>\\lstinputlisting[firstline=<+line-begin+>, lastline=<+line-end+>]{<++>.m}\<CR>"
+let g:Tex_Env_mcode="\\begin{lstlisting}\<CR><++>\<CR>\\end{lstlisting}"
+
+
+
+let g:Tex_Env_line="\<CR>\\noindent\\rule{\\textwidth}{1pt} % I am a line!\<CR>\<CR>"
+let g:Tex_Env_frame="\\begin{frame}\<CR>\\frametitle{<+FrameTitle+>}\<CR><++>\<CR>\\end{frame}"
+
+imap <C-b> <Plug>Tex_MathBF
+imap <C-c> <Plug>Tex_MathCal
+imap <C-l> <Plug>Tex_LeftRight
+
+nnoremap <leader>T :set syntax=tex<CR>
+nnoremap <leader>t :Voom latex<CR>
+
+
+

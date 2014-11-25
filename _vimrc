@@ -1,5 +1,8 @@
-"colorscheme solarized 
-"set background=dark
+" Use spaces instead of tabs
+"set expandtab
+ "colorscheme papayawhip
+"default
+"olive
 set fdm=marker
 let mapleader = ","
 let g:mapleader = ","
@@ -14,6 +17,8 @@ set undodir=C:\Users\llinfeng\Documents\Vim-document\undodir
 " Change working directory 
 " set the runtime path to include Vundle and initialize
 set rtp+=C:/Vim/vimfiles/bundle/Vundle.vim/
+set rtp+=c:\Vim\vimfiles\bundle\vim-snipmate\snippets\
+set rtp+=c:\Users\llinfeng\Dropbox\Shu\SnipMate\snippets\
 let path='C:/Vim/vimfiles/bundle'
 " For handling the .swp file and files that ends with ~. 
 set noswapfile
@@ -89,6 +94,7 @@ set wildignore+=*.pdfsync,*.sty,*.bst
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*.xlsx,*.mm,*.pptx,*.docx,*.doc,*.xls
 set wildignore+=*.bbl,*.blg,*.sav
+set wildignore+=*.dta,*.csv "Comment his when trying to get a grasp of the structure of the dataset
 set wildmode=list:full
 "set wildmode=""
 "set wildmode=longest,list
@@ -98,13 +104,12 @@ set wildmode=list:full
 " => ·Ö¶Î & Tab-key
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Smart Tab setup == use spaces instead. 
-" Use spaces instead of tabs
-set expandtab
 
 " Be smart when using tabs ;)
 "set smarttab
 
-" 1 tab == 4 spaces
+
+" 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
@@ -214,7 +219,7 @@ call vundle#begin(path)
 " let Vundle manage Vundle, required
 " Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'llinfeng/mru.vim'
+"Plugin 'llinfeng/mru.vim'
 Plugin 'llinfeng/dwm.vim'
 Plugin 'llinfeng/LanguageTool'
 Plugin 'llinfeng/FeralToggleCommentify.vim'
@@ -226,25 +231,35 @@ Plugin 'sjl/gundo.vim' " (Requires +Python)
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-voom/VOoM'
 Plugin 'vimwiki/vimwiki'
-Plugin 'honza/vim-snippets'
 Plugin 'vim-scripts/listmaps.vim'
 Plugin 'vim-scripts/matlab_run.vim'
 Plugin 'vim-scripts/grep.vim'
 Plugin 'llinfeng/vim-latex-suite'
 
-"Plugin 'vimoutliner/vimoutliner'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neomru.vim'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'llinfeng/vim-snipmate'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
 
-"Plugin 'jcf/vim-latex'
-"Plugin 'jeffkreeftmeijer/vim-numbertoggle' " use set relativenumber!
+Plugin 'MarcWeber/vim-addon-async'
+
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'SirVer/ultisnips'
 
 Plugin 'tpope/vim-surround' " It is not well performing. I just added it in directly. 
-
-
 Plugin 'bling/vim-airline'
+Plugin 'mileszs/ack.vim'
+
+
+
+" I don't like changing colors!
+"Plugin 'xolox/vim-colorscheme-switcher'
+"Plugin 'Taverius/vim-colorscheme-manager'
 
 " Something I don't find useful.
-"Plugin 'llinfeng/yankring'
-"Plugin 'tpope/vim-fugitive'
 
 " Vim with R, the dependnece part.
 "Plugin 'Vim-R-plugin'
@@ -273,7 +288,7 @@ let g:ctrlp_cache_dir='C:\Users\llinfeng\Documents\Vim-document\CtrlP'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_regexp = 1
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$'
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$|.dta$'
 let g:ctrlp_open_new_file = 'v'
 "let g:ctrlp_mruf_include = '\.py$\|\.rb$|\.wiki$|\.ado$|\.tex$|\.bib%|'
 "let g:ctrlp_mruf_include = '.py,.tex,.wiki'
@@ -380,14 +395,6 @@ let g:dwm_master_pane_width="50%"
 "nnoremap <c-h> <C-W><left>
 "nnoremap <c-l> <C-W><right>
 " }}}
-" Solarized Coloring {{{
-syntax enable
-let g:solarized_italic=0 " All parameters should be set before calling the color scheme. 
-let g:solarized_termcolors=256
-
-"Or | "high" or "low"
-let g:solarized_visibility="normal" 
-" }}} 
 " MRU {{{
 highlight link MRUFileName LineNr 
 let MRU_Max_Entries = 400
@@ -534,6 +541,7 @@ nnoremap <C-n> :bn<CR>
 nnoremap <M-w> :tabclose<CR>
 nnoremap <M-c> :tabnew<CR>
 nnoremap <M-n> :tabnext<CR>
+nnoremap <M-p> :tabprevious<CR>
 inoremap <S-tab> <backspace><backspace><backspace><backspace>
 
 "inoremap zz <ESC>Vapgqi<end> 
@@ -562,28 +570,21 @@ nnoremap <S-CR> [sz=<CR>
 nnoremap Y y$
 
 " To add a task in VimWiki.
-"autocmd Filetype wiki 
-autocmd FileType vimwiki nnoremap <F10> I* [ ] <ESC>
-autocmd FileType vimwiki inoremap <F10> <ESC>I* [ ] 
-" Hopefully 
-autocmd FileType vimwiki nnoremap <C-D> :VimwikiToggleListItem<CR>j
+" All the mappings have been transported to the ftpluging .vim files. 
 
 
 " }}}
 " Mapping for moving cursor around (both windows and tabs) {{{
 
 " Treat long lines as break lines (useful when moving around in them)
-noremap j gj
-noremap k gk
 noremap <home> g0
 noremap <end> g$
-noremap 0 g0
-noremap $ g$
+"noremap 0 g0
+"noremap $ g$
 inoremap <silent> <Down> <C-o>gj
 inoremap <silent> <Up> <C-o>gk
 inoremap <home> <C-o>g0
 inoremap <end> <C-o>g$
-"autocmd FileType stata nunmap j k <end> <home> 
 
 " }}}
 " Mapping for Windows {{{
@@ -600,48 +601,13 @@ cnoremap <C-A> <C-C>gggH<C-O>G
 onoremap <C-A> <C-C>gggH<C-O>G
 
 " }}}
-" Leader Mapping {{{
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 " Change pwd to the directory of the buffer.
-noremap <leader>cd :cd %:p:h<cr>
 
-" Fast saving
-nnoremap <leader>s :w!<cr>
-" Disable highlight when <leader><cr> is pressed
 
-call togglebg#map("<leader>c")
 
-nnoremap <Leader>d :bd<CR>
-nnoremap <Leader>D :bd!<CR>
-nnoremap <Leader>n :bn<CR>
-nnoremap <Leader>N :set relativenumber!<CR>
-nnoremap <Leader>p :bp<CR>
-nnoremap <Leader>b :bp<CR>
-nnoremap <leader>u :e C:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
 
-nnoremap <Leader>e :e $MYVIMRC<CR> :O<CR>
-noremap <leader>f <ESC>:Fullscreen<CR>:Fullscreen<CR>:Fullscreen<CR>
-nnoremap <leader>i :PluginInstall<CR>
-nnoremap <Leader>l :ls<CR>
 " <F12> is used for toggling the menu bar.
-nnoremap <leader>m :if &go=~'m'<bar>set go-=m<bar>else<bar>set go+=m<bar>endif<cr>
-nnoremap <leader>sy ggVGy<C-W>wggVGp<C-W>w
-nnoremap <leader>u :e C:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki<CR>
-nnoremap <leader>x :wa!<CR><ESC>:exit<CR>
-"nnoremap <leader>t :r !time /T<CR><ESC>=
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-nnoremap <Leader><Leader> :cd %:p:h<cr>
-nnoremap <leader><space> :nohl<CR>
+
 
 "
 " It's useful to show the buffer number in the status line.
@@ -654,15 +620,7 @@ while c <= 99
     let c += 1
 endwhile
 " }}} 
-" iab mapping {{{
-iab sj <c-r>=strftime("20%y-%m-%d %H:%M:%S")<cr>
-iab rq <c-r>=strftime("20%y-%m-%d")<cr>
-iab SJ <c-r>=strftime("%H:%M:%S")<cr>
-" }}}
-" }}}
 " My functions {{{
-" Stata Do-File Scripts {{{
-
 " Run the whole do file at a time.
     fun! RunIt()
         wa
@@ -691,68 +649,19 @@ iab SJ <c-r>=strftime("%H:%M:%S")<cr>
     endfun
 
 " <F11> is used to run a entire do file, from the beginning to the end.    
-autocmd FileType stata nnoremap <F11> :<C-U>call RunIt() <ENTER>
-autocmd FileType stata inoremap <F11> <Esc>:<C-U>call RunIt() <ENTER>
-autocmd FileType stata vnoremap <F11> <Esc>:<C-U>call RunIt() <ENTER>
+" The actual mappings are moved to stata.vim located in the in ftplugin. 
+" The reasons is that: there is no local keymapping function in Vim.
 
 " <F12> is used to run a line command, regardless of whether the line is visually selected or not.
-autocmd FileType stata noremap <F12> V:<C-U>call RunDoLines() <CR>
-autocmd FileType stata inoremap <F12> <ESC>V:<C-U>call RunDoLines() <CR>
-autocmd FileType stata vnoremap <F12> :<C-U>call RunDoLines() <CR>
-
-" To run commands from commented texts! 
-"#IfWinActive ahk_class Vim
-"+F12:: 
-"  send {ESC}
-"  send v$
-"  send {F12}
-"return
-"  (Implemented in AHK. Did not find a Vim solution.)
 
 
-
-
-
-" A working version for Mac users (hopefully those using *nix)
-" Source: http://stackoverflow.com/questions/4226145/sending-code-from-vim-to-stata
-" Also refer to: https://github.com/dinosv/statascripts/blob/master/stata_vim/README
-"" STATA DO-FILE SCRIPTS
-"fun! RunIt()
-"  w
-"  "adjust this path to the bash script
-"  !sh "/home/username/.rundo.sh" "%:p"
-"endfun
-"au FileType stata noremap <F8> :<C-U>call RunIt()<CR><CR>
-"fun! RunDoLines()
-"  let selectedLines = getbufline('%', line("'<"), line("'>"))
-" if col("'>") < strlen(getline(line("'>")))
-"  let selectedLines[-1] = strpart(selectedLines[-1], 0, col("'>"))
-"  endif
-" if col("'<") != 1
-"  let selectedLines[0] = strpart(selectedLines[0], col("'<")-1)
-"  endif
-" let temp = tempname() . ".do"
-"  call writefile(selectedLines, temp)
-"          "adjust this path to the bash script
-"          exec "!sh /home/username/.rundo.sh " . temp
-"    "au VimLeave * exe "!del -y" temp
-"    au VimLeave * silent exe '!del /Q "'.$TEMP.'\*.tmp.do"'
-"endfun
-"au FileType stata noremap <F9> :<C-U>call RunDoLines()<CR><CR> 
-
-" }}} 
 " }}}
 
 " AutoCommand {{{
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md setlocal filetype=markdown
 "autocmd  BufRead,BufWritePre *.do normal gg=G
 
-autocmd FileType vimwiki nnoremap <leader>T :set syntax=vimwiki<CR>
-autocmd FileType vimwiki nnoremap <leader>t :Voom vimwiki<CR>
-autocmd FileType vimwiki nnoremap C VC
  
-autocmd FileType tex nnoremap <leader>T :set syntax=tex<CR>
-autocmd FileType tex nnoremap <leader>t :Voom latex<CR>
 
 
 autocmd FocusLost * wall
@@ -763,7 +672,9 @@ augroup vimscript
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-au BufRead,BufNewFile *.tex setlocal wrap linebreak nolist textwidth=80 wrapmargin=0 formatoptions+=t
+au FileType tex setlocal linebreak nolist textwidth=80 wrapmargin=0 formatoptions+=t fdm=manual
+au FileType matlab setlocal linebreak nolist textwidth=0 wrapmargin=0 formatoptions+=t fdm=manual shiftwidth=4 tabstop=4 softtabstop=4 shiftround 
+au FileType stata setlocal wrap nolinebreak nolist textwidth=0 wrapmargin=0 fdm=manual
 au BufRead,BufNewFile *.m setlocal wrap linebreak nolist textwidth=0 wrapmargin=0 formatoptions+=t
 au BufRead,BufNewFile *.py setlocal wrap linebreak nolist textwidth=80 wrapmargin=0 formatoptions+=t foldmethod=indent foldlevel=99
 
@@ -824,8 +735,9 @@ nnoremap <F17> :call DiffLineWithNext()^M
 
 " Defining commandline functions.
 command! O only
+command! Co :copen
+command! CO :copen
 command! C :center
-command! U :e c:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
 
 " the following command defines the SaveIt command, which writes out the specified range to the file "save_file": 
 "command! -range=% SaveIt :<line1>,<line2>write! save_file
@@ -839,12 +751,10 @@ nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
 nnoremap <F8> :e <C-R>=fnameescape(g:latest_deleted_buffer)<CR><CR>
 
 " Copy the full file path to windows clipboard.
-nnoremap <leader><leader>f :let @* = expand("%:p")<CR>
-nnoremap <leader><leader>n :let @* = expand("%:t")<CR>
-nnoremap <leader><leader>p :let @* = expand("%:p:h")<CR>
+nnoremap yyy :let @* = expand("%:p")<CR>
 
 " Copy the file name to windows clipboard.
-nnoremap Y :let @* = expand("%:p:h")<CR>
+nnoremap Y :let @* = expand("%:p:t")<CR>
 
 " complete list of the choices: 
     " Path(absolute) to the file: "%:p" 
@@ -853,3 +763,142 @@ nnoremap Y :let @* = expand("%:p:h")<CR>
     " Relative path: "%"
 
 nnoremap DDD :call delete(expand('%')) 
+"autocmd QuickFixCmdPost [^l]* nested copen
+autocmd QuickFixCmdPost    l* nested copen
+
+
+imap <tab> <Plug>snipMateNextOrTrigger
+smap <tab> <Plug>snipMateNextOrTrigger
+
+" Don't tough my macros!
+" l = line-separator
+"let @l = "i*79.yypO"
+let @l = "i*79.yypO/* */:CC€kbwhs"
+" r = run
+let @r = "Vgg€F2"
+" w = write
+let @w = "G5ki"
+" c = center
+let @c = "i/*A*/:C"
+let @t = "Itex j"
+let @p = ":s/^/tex /g^["
+
+"2014-11-21 21:48:34, for centering the comment line.
+"This would need no auto linebreak. wrapping is also not well accepted.
+let @o = ":CV:s/\t/g€kb  /gikV:s/ /*/gJxA40A*d80|, "
+
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+
+"nnoremap M :Unite -start-insert file_mru<CR>
+command! M :Unite -start-insert file_mru
+command! MRU :Unite -vertical file_mru
+command! L :Unite -start-insert line
+command! S :Unite -start-insert file buffer file_mru
+
+nnoremap S :Unite -start-insert file buffer file_mru<CR>
+" Search through yank history.
+let g:unite_source_history_yank_enable = 1
+
+
+
+
+" Leader Mapping {{{
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+nnoremap <leader>cd :cd %:p:h<cr>
+nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>D :bd!<CR>
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>N :setlocal relativenumber!<CR>
+nnoremap <Leader>e :e $MYVIMRC<CR> :O<CR>
+noremap <leader>f <ESC>:Fullscreen<CR>:Fullscreen<CR>:Fullscreen<CR>
+nnoremap <leader>i :PluginInstall<CR>
+"nnoremap <Leader>l :ls<CR>
+nnoremap <leader>M :if &go=~'m'<bar>set go-=m<bar>else<bar>set go+=m<bar>endif<cr>
+nnoremap <leader>sy ggVGy<C-W>wggVGp<C-W>w
+nnoremap <leader>u :e C:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki<CR>
+nnoremap <leader>x :wa!<CR><ESC>:exit<CR>
+"nnoremap <leader>t :r !time /T<CR><ESC>=
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
+nnoremap <leader><space> :nohl<CR>
+nnoremap <leader><leader>f :let @* = expand("%:p")<CR>
+nnoremap <leader><leader>n :let @* = expand("%:t")<CR>
+nnoremap <leader><leader>p :let @* = expand("%:p:h")<CR>
+nnoremap <leader>l :Unite -start-insert line<CR>
+nnoremap <leader>s :Unite -start-insert file buffer file_mru<CR>
+nnoremap <leader><leader> :Unite -start-insert file buffer file_mru<CR>
+nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <leader>m :<C-u>Unite -start-insert file_mru<CR>
+nnoremap <leader>y :<C-u>Unite history/yank<CR>
+" k for keyword
+nnoremap <leader>k :grep <cword> *<CR>
+nnoremap <leader>w :w!<CR>
+vnoremap <leader>g gq
+nnoremap <leader>g gq
+vnoremap <leader>G gqap
+nnoremap <leader>G gqap
+
+" leader key for opening files
+nnoremap <leader>a :e C:/Users/llinfeng/Dropbox/Wiki/Warehouse/apply.wiki<CR>
+
+" For searching
+nnoremap <leader>m :Unite -start-insert file_mru
+
+" For buffer management
+nnoremap <leader>o :only<CR>
+" }}}
+	\item \verb|cat_A = 1| if and only if there is at least $A$ presented.
+
+
+
+"
+nnoremap <F5> <ESC>:marks<CR>
+"map <c-m> :marks<CR>
+"unmap <cr>
+cd c:\noda
+
+map <leader>c :CC<CR>
+map <leader>u :UC<CR>
+
+"nnoremap <leader>u :e C:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
+command! U :e c:\Users\llinfeng\Dropbox\Wiki\Warehouse\URL.wiki
+command! PRESETTEX :s/^/tex /g
+
+" Solarized Coloring {{{
+syntax enable
+let g:solarized_italic=0 " All parameters should be set before calling the color scheme. 
+let g:solarized_termcolors=256
+
+"Or | "high" or "low"
+let g:solarized_visibility="normal" 
+colorscheme solarized 
+set background=dark
+"set background=light
+
+" }}} 
+
+
+" iab mapping: saving keystrokes
+iab sj <c-r>=strftime("20%y-%m-%d %H:%M:%S")<cr>
+iab rq <c-r>=strftime("20%y-%m-%d")<cr>
+iab SJ <c-r>=strftime("%H:%M:%S")<cr>
+iab v1 {v^1}
+iab v2 {v^2}
+iab c1 {c^1}
+iab c2 {c^2}
+iab l1 {l^1}
+iab l2 {l^2}
+iab ti {\theta_i}
+
+"set guioptions+=r
