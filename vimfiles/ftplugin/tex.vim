@@ -33,12 +33,9 @@ let g:Tex_Env_mcode="\\begin{lstlisting}\<CR><++>\<CR>\\end{lstlisting}"
 let g:Tex_Env_line="\<CR>\\noindent\\rule{\\textwidth}{1pt} % I am a line!\<CR>\<CR>"
 let g:Tex_Env_frame="\\begin{frame}\<CR>\\frametitle{<+FrameTitle+>}\<CR><++>\<CR>\\end{frame}"
 
-imap <C-b> <Plug>Tex_MathBF
-imap <C-c> <Plug>Tex_MathCal
-imap <C-l> <Plug>Tex_LeftRight
+"vmap <buffer> <C-b> <Plug>Tex_MathBF
+"vmap <buffer> <C-c> <Plug>Tex_MathCal
+"vmap <buffer> <C-l> <Plug>Tex_LeftRight
 
-nnoremap <leader>T :set syntax=tex<CR>
-nnoremap <leader>t :Voom latex<CR>
-
-
-
+nnoremap <buffer> <leader>T :set syntax=tex<CR>
+nnoremap <buffer> <leader>t :Voom latex<CR>

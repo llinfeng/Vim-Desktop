@@ -228,12 +228,12 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'xolox/vim-misc' 
 Plugin 'xolox/vim-shell'
 Plugin 'sjl/gundo.vim' " (Requires +Python)
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
 Plugin 'vim-voom/VOoM'
 Plugin 'vimwiki/vimwiki'
 Plugin 'vim-scripts/listmaps.vim'
 Plugin 'vim-scripts/matlab_run.vim'
-Plugin 'vim-scripts/grep.vim'
+"Plugin 'vim-scripts/grep.vim'
 Plugin 'llinfeng/vim-latex-suite'
 
 Plugin 'Shougo/unite.vim'
@@ -250,8 +250,8 @@ Plugin 'MarcWeber/vim-addon-async'
 "Plugin 'SirVer/ultisnips'
 
 Plugin 'tpope/vim-surround' " It is not well performing. I just added it in directly. 
-Plugin 'bling/vim-airline'
-Plugin 'mileszs/ack.vim'
+Plugin 'llinfeng/vim-airline'
+"Plugin 'mileszs/ack.vim'
 
 
 
@@ -283,16 +283,16 @@ filetype plugin indent on    " required
 nnoremap <C-S-CR> :Open<CR>
 " }}}
 " Ctrl+P Suite {{{
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_cache_dir='C:\Users\llinfeng\Documents\Vim-document\CtrlP'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_by_filename = 1
-let g:ctrlp_regexp = 1
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$|.dta$'
-let g:ctrlp_open_new_file = 'v'
-"let g:ctrlp_mruf_include = '\.py$\|\.rb$|\.wiki$|\.ado$|\.tex$|\.bib%|'
-"let g:ctrlp_mruf_include = '.py,.tex,.wiki'
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:57,results:57'
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_cache_dir='C:\Users\llinfeng\Documents\Vim-document\CtrlP'
+"let g:ctrlp_clear_cache_on_exit = 0
+"let g:ctrlp_by_filename = 1
+"let g:ctrlp_regexp = 1
+"let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.rvm$|.dta$'
+"let g:ctrlp_open_new_file = 'v'
+""let g:ctrlp_mruf_include = '\.py$\|\.rb$|\.wiki$|\.ado$|\.tex$|\.bib%|'
+""let g:ctrlp_mruf_include = '.py,.tex,.wiki'
+"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:57,results:57'
 
 "let g:ctrlp_use_caching=1
 "let g:ctrlp_by_filename = 1
@@ -566,7 +566,6 @@ inoremap <silent> <insert> <ESC>:YRShow<CR>
 noremap <F2> :NERDTreeToggle<CR> 
 noremap <silent> <F3> :noh<cr>
 nnoremap <F4> :GundoToggle<CR>
-nnoremap <S-CR> [sz=<CR>
 nnoremap Y y$
 
 " To add a task in VimWiki.
@@ -735,6 +734,8 @@ nnoremap <F17> :call DiffLineWithNext()^M
 
 " Defining commandline functions.
 command! O only
+command! R right
+nnoremap <leader>r :right<CR>
 command! Co :copen
 command! CO :copen
 command! C :center
@@ -795,7 +796,7 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 command! M :Unite -start-insert file_mru
 command! MRU :Unite -vertical file_mru
 command! L :Unite -start-insert line
-command! S :Unite -start-insert file buffer file_mru
+command! S :e C:/Users/llinfeng/Dropbox/Wiki/Warehouse/stata.wiki
 
 nnoremap S :Unite -start-insert file buffer file_mru<CR>
 " Search through yank history.
@@ -835,25 +836,27 @@ nnoremap <leader><space> :nohl<CR>
 nnoremap <leader><leader>f :let @* = expand("%:p")<CR>
 nnoremap <leader><leader>n :let @* = expand("%:t")<CR>
 nnoremap <leader><leader>p :let @* = expand("%:p:h")<CR>
+nnoremap <leader><leader><leader> :pwd<CR>
 nnoremap <leader>l :Unite -start-insert line<CR>
 nnoremap <leader>s :Unite -start-insert file buffer file_mru<CR>
+nnoremap <leader>g :Unite -start-insert grep<CR>
+nnoremap <C-p> :Unite -start-insert file buffer file_mru<CR>
+nnoremap <C-L> :Unite -start-insert line<CR>
 nnoremap <leader><leader> :Unite -start-insert file buffer file_mru<CR>
-nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+"nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>m :<C-u>Unite -start-insert file_mru<CR>
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
 " k for keyword
 nnoremap <leader>k :grep <cword> *<CR>
 nnoremap <leader>w :w!<CR>
-vnoremap <leader>g gq
-nnoremap <leader>g gq
-vnoremap <leader>G gqap
-nnoremap <leader>G gqap
 
 " leader key for opening files
 nnoremap <leader>a :e C:/Users/llinfeng/Dropbox/Wiki/Warehouse/apply.wiki<CR>
 
 " For searching
-nnoremap <leader>m :Unite -start-insert file_mru
+nnoremap <leader>m :Unite -start-insert file_mru<CR>
+nnoremap <c-m> :Unite -start-insert file_mru<CR>
+nnoremap <C-L> :Unite -start-insert line<CR>
 
 " For buffer management
 nnoremap <leader>o :only<CR>
@@ -883,9 +886,8 @@ let g:solarized_termcolors=256
 "Or | "high" or "low"
 let g:solarized_visibility="normal" 
 colorscheme solarized 
-set background=dark
-"set background=light
-
+"set background=dark
+set background=light
 " }}} 
 
 
@@ -902,3 +904,17 @@ iab l2 {l^2}
 iab ti {\theta_i}
 
 "set guioptions+=r
+"When having mapped <CR> somewhere
+autocmd CmdwinEnter * nnoremap <CR> <CR>
+autocmd BufReadPost quickfix nnoremap <CR> <CR>
+
+"nnoremap <CR> o<Esc>
+"nnoremap <S-CR> i<CR><Esc> " Needed for GVIm
+"nnoremap ^[0M i<CR><Esc>   " Needed for CLI VIm (Note: ^[0M was created with Ctrl+V Shift+Enter, don't type it directly)
+
+"vnoremap <leader>g gq
+"nnoremap <leader>g gq
+"vnoremap <leader>G gqap
+"nnoremap <leader>G gqap
+
+nnoremap <c-s-t> :vs<bar>:b#<cr>

@@ -1,5 +1,11 @@
-map <C-CR> :<C-U>call RunIt() <ENTER>
-imap <C-CR> <Esc>:<C-U>call RunIt() <ENTER>
+"" Now, forget about the F11 and F12. Just use contextual ctrl-enter.
+"map <buffer> <C-CR> :<C-U>call RunIt() <CR>
+"imap <buffer> <C-CR> <Esc>:<C-U>call RunIt() <CR>
+"vmap <buffer> <c-CR> :<C-U>call RunDoLines() <CR>
+"imap <buffer> <c-CR> <ESC>Vgg:<C-U>call RunDoLines() <CR>
+
+noremap  <buffer> <CR> V:<C-U>call RunDoLines() <CR>
+vnoremap <buffer> <CR> :<C-U>call RunDoLines() <CR>
 
 " Mappings for Stata Command.    
 "autocmd FileType stata noremap <F8> :<C-U>call RunIt() <CR>
@@ -18,3 +24,5 @@ noremap  <buffer> <F12> V:<C-U>call RunDoLines() <CR>
 inoremap <buffer> <F12> <ESC>V:<C-U>call RunDoLines() <CR>
 vnoremap <buffer> <F12> :<C-U>call RunDoLines() <CR>
 
+autocmd CmdwinEnter * nnoremap <CR> <CR>
+autocmd BufReadPost quickfix nnoremap <CR> <CR>
